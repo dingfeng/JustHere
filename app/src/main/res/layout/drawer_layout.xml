@@ -17,11 +17,88 @@
         android:background="@android:color/holo_red_light"
         >
     <LinearLayout
+        android:id="@+id/menu_linear_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        >
+    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:text="@string/menu"
+        android:textSize="50dp"
+        android:background="@android:color/holo_blue_bright"
+        android:layout_weight="0.02"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.8"
         >
+        <LinearLayout
+            android:id="@+id/main_page"
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            >
+
+            <TextView
+                android:id="@+id/mainPage_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/main_page"
+                android:textSize="32dp"
+                android:background="@android:color/holo_orange_light"
+                />
 
         </LinearLayout>
+        <LinearLayout
+        android:id="@+id/collection"
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:paddingTop="20dp"
+        android:layout_weight="0.9">
+
+        <TextView
+            android:id="@+id/collection_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/collection"
+            android:textSize="32dp"
+            android:background="@android:color/holo_orange_light"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_weight="0.05"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@android:color/holo_red_dark"
+        android:layout_gravity="bottom"
+        >
+    <Button
+        android:id="@+id/set_button"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:text="@string/set_button"
+        android:layout_weight="0.5"
+        />
+     <Button
+         android:id="@+id/about_button"
+         android:layout_width="wrap_content"
+         android:layout_height="fill_parent"
+         android:text="@string/about_button"
+         android:layout_weight="0.5"
+         />
+        </LinearLayout>
+    </LinearLayout>
+
+    </LinearLayout>
         
         </RelativeLayout>
     <!--<RelativeLayout-->

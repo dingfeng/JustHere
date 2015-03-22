@@ -10,4 +10,9 @@
     <string name = "user_name">匿名...</string>
     <string name = "time">昨天</string>
     <string name = "praise">赞</string>
+    <string name = "menu">菜单</string>
+    <string name = "collection">收藏</string>
+    <string name="set_button">设置</string>
+    <string name="about_button">关于</string>
+    <string name="main_page">主页</string>
 </resources>
