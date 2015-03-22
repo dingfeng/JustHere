@@ -45,7 +45,8 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
                     android:layout_weight="0.1"
-                    android:src="@drawable/right_arrow" />
+                    android:src="@drawable/right_arrow"
+                    />
             </LinearLayout>
 
             </LinearLayout>

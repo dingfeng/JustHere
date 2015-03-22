@@ -1,10 +1,12 @@
 package com.justsdudio.justhere;
 
-import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
 import android.app.Fragment;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,11 +29,12 @@ public class CenterFragment extends Fragment
     View rootView;
     ImageView left_menu_button;
     ImageView right_menu_button;
+    TabHost tabHost;
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState)
     {
         rootView = inflater.inflate(R.layout.activity_main,null);
-        TabHost tabHost = (TabHost)rootView.findViewById(R.id.tabHost);
+        tabHost = (TabHost)rootView.findViewById(R.id.tabHost);
         tabHost.setup();
         TabHost.TabSpec  tab1 = tabHost.newTabSpec("tab1").setIndicator("留言").setContent(R.id.tab1);
         tabHost.addTab(tab1);
@@ -39,11 +42,51 @@ public class CenterFragment extends Fragment
         tabHost.addTab(tab2);
         TabHost.TabSpec tab3 = tabHost.newTabSpec("tab3").setIndicator("信息分享").setContent(R.id.tab3);
         tabHost.addTab(tab3);
+        updateTabBackground(tabHost);
+        tabHost.setOnTabChangedListener(new TabHost.OnTabChangeListener()
+        {
+            @Override
+            public void onTabChanged(String tabId)
+            {
+                    updateTabBackground(tabHost);
+            }
+        });
         return rootView;
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    private void updateTabBackground(final TabHost tabHost)
+    {
+        for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++)
+        {
+            View v = tabHost.getTabWidget().getChildAt(i);
+            if (tabHost.getCurrentTab() == i)
+            {
+                v.setBackground(getResources().getDrawable(R.drawable.tabhost2));
+            }
+            else v.setBackground(getResources().getDrawable(R.drawable.tabhost));
+        }
+    }
     public void onActivityCreated(Bundle savedInstanceState)
     {
+        final DrawerLayout drawerLayout = MainActivity.drawer;
+        ImageView leftImage = (ImageView)rootView.findViewById(R.id.iv_left);
+        ImageView rightImage = (ImageView)rootView.findViewById(R.id.iv_right);
+        leftImage.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+        rightImage.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+
+            }
+        });
+
         super.onActivityCreated(savedInstanceState);
         ListView list = (ListView)rootView.findViewById(R.id.list);
         String [] contentStr = new String[]

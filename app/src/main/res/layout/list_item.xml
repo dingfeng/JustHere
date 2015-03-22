@@ -45,20 +45,25 @@
              android:layout_width="wrap_content"
              android:layout_height="20dp"
              android:layout_weight="0.9"
+             android:textSize="10dp"
              android:text="@string/time"
+             android:layout_marginTop="8dp"
              />
          <Button
              android:id="@+id/button"
              android:layout_width="10dp"
-             android:layout_height="match_parent"
+             android:layout_height="30dp"
              android:layout_gravity="right"
              android:layout_weight="0.1"
+             android:textSize="10dp"
              android:text="@string/praise"
-             />
+         />
          <TextView
              android:id="@+id/praise_num"
              android:layout_width="5dp"
              android:layout_height="match_parent"
+             android:layout_marginTop="8dp"
+             android:textSize="10dp"
              android:layout_weight="0.1"/>
          </LinearLayout>
      </LinearLayout>

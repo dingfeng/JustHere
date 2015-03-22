@@ -11,7 +11,7 @@
     </FrameLayout>
     <RelativeLayout
         android:id="@+id/menu_layout_left"
-        android:layout_width="120dp"
+        android:layout_width="90dp"
         android:layout_height="match_parent"
         android:layout_gravity="left"
         android:background="@android:color/holo_red_light"
@@ -27,7 +27,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/menu"
-        android:textSize="50dp"
+        android:textSize="30dp"
+        android:gravity="center"
         android:background="@android:color/holo_blue_bright"
         android:layout_weight="0.02"/>
     <LinearLayout
@@ -42,13 +43,15 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
+            android:paddingTop="20dp"
             >
 
             <TextView
                 android:id="@+id/mainPage_button"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/main_page"
+                android:gravity="center"
                 android:textSize="32dp"
                 android:background="@android:color/holo_orange_light"
                 />
@@ -62,12 +65,12 @@
         android:clickable="true"
         android:paddingTop="20dp"
         android:layout_weight="0.9">
-
         <TextView
             android:id="@+id/collection_button"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/collection"
+            android:gravity="center"
             android:textSize="32dp"
             android:background="@android:color/holo_orange_light"
             />
@@ -76,26 +79,20 @@
     <LinearLayout
         android:layout_weight="0.05"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="20dp"
         android:orientation="horizontal"
         android:background="@android:color/holo_red_dark"
         android:layout_gravity="bottom"
         >
+
     <Button
         android:id="@+id/set_button"
         android:layout_width="wrap_content"
         android:layout_height="fill_parent"
         android:text="@string/set_button"
         android:layout_weight="0.5"
-        />
-     <Button
-         android:id="@+id/about_button"
-         android:layout_width="wrap_content"
-         android:layout_height="fill_parent"
-         android:text="@string/about_button"
-         android:layout_weight="0.5"
-         />
-        </LinearLayout>
+    />
+    </LinearLayout>
     </LinearLayout>
 
     </LinearLayout>
