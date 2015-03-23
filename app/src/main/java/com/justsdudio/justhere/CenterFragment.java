@@ -2,7 +2,6 @@ package com.justsdudio.justhere;
 
 import android.annotation.TargetApi;
 import android.app.Fragment;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -62,9 +61,9 @@ public class CenterFragment extends Fragment
             View v = tabHost.getTabWidget().getChildAt(i);
             if (tabHost.getCurrentTab() == i)
             {
-                v.setBackground(getResources().getDrawable(R.drawable.tabhost2));
+                v.setBackground(getResources().getDrawable(R.drawable.tabhostt));
             }
-            else v.setBackground(getResources().getDrawable(R.drawable.tabhost));
+            else v.setBackground(getResources().getDrawable(R.drawable.tabhosttt));
         }
     }
     public void onActivityCreated(Bundle savedInstanceState)
