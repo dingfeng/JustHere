@@ -15,4 +15,9 @@
     <string name="set_button">设置</string>
     <string name="about_button">关于</string>
     <string name="main_page">主页</string>
+
+
+    <string name="splashTip">这是未添加闪屏图片的闪屏</string>
+    <string name="title_activity_splash">SplashActivity</string>
+    <string name="loginButton">登陆</string>
 </resources>
