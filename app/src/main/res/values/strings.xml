@@ -20,4 +20,5 @@
     <string name="splashTip">这是未添加闪屏图片的闪屏</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="loginButton">登陆</string>
+    <string name="title_activity_choose_location">请选择地点</string>
 </resources>
