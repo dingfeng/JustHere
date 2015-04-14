@@ -1,4 +1,4 @@
-package com.justsdudio.justhere;
+package com.justsdudio.justhere.chooseLocation;
 
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBar;
@@ -11,6 +11,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.os.Build;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import com.justsdudio.justhere.R;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class ChooseLocationActivity extends ActionBarActivity {
@@ -56,13 +64,58 @@ public class ChooseLocationActivity extends ActionBarActivity {
      */
     public static class PlaceholderFragment extends Fragment {
 
+        ArrayAdapter<String> mForecastAdapter;
+
         public PlaceholderFragment() {
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
+
+            // Create some dummy data for the ListView.  Here's a sample weekly forecast
+            String[] data = {
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学",
+                    "南京大学"
+            };
+            List<String> weekForecast = new ArrayList<String>(Arrays.asList(data));
+
+
+            // Now that we have some dummy forecast data, create an ArrayAdapter.
+            // The ArrayAdapter will take data from a source (like our dummy forecast) and
+            // use it to populate the ListView it's attached to.
+            mForecastAdapter =
+                    new ArrayAdapter<String>(
+                            getActivity(), // The current context (this activity)
+                            R.layout.list_item_forecast, // The name of the layout ID.
+                            R.id.list_item_forecast_textview, // The ID of the textview to populate.
+                            weekForecast);
+
             View rootView = inflater.inflate(R.layout.fragment_choose_location, container, false);
+
+            // Get a reference to the ListView, and attach this adapter to it.
+            ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
+            listView.setAdapter(mForecastAdapter);
+
             return rootView;
         }
     }
