@@ -5,6 +5,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.AbsoluteSizeSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.TypefaceSpan;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,14 +38,41 @@ public class ChooseLocationActivity extends ActionBarActivity {
                     .commit();
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
+/*
+        SpannableString s = new SpannableString("请选择地点（测试字体）");
+        s.setSpan(new RelativeSizeSpan(1.0f),0, s.length(),
+                Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+
+        // Update the action bar title with the TypefaceSpan instance
+        toolbar.setTitle(s);*/
+        MenuItem menu2=(MenuItem)findViewById(R.id.action_settings);
+        if(menu2==null){
+            System.out.println("menuitem对象在创建Activity时是空的");
+        }
         this.setSupportActionBar(toolbar);
+
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_choose_location, menu);
+        //获取menuItem对象进行修改，不过貌似无法调整ActionBar上展示出来的Item字体的大小，因此注释掉了
+/*        MenuItem menu2=(MenuItem)findViewById(R.id.action_settings);
+        if(menu==null){
+            System.out.println("menu对象是空的");
+        }
+        if(menu.findItem(R.id.action_settings)==null){
+            System.out.println("menu对象包含menuitem");
+        }
+        SpannableString s = new SpannableString("跳过2");
+        s.setSpan(new AbsoluteSizeSpan(50),0, s.length(),
+                Spannable.SPAN_INCLUSIVE_INCLUSIVE);
+        menu.findItem(R.id.skip).setTitle(s);*/
+
+
+
+
         return true;
     }
 
@@ -55,7 +87,13 @@ public class ChooseLocationActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
+        if (id == R.id.skip) {
+            System.out.println("你点击了跳过按钮");
+            /**
+             * 这里填写点击跳过按钮后的事件，应该是跳转到一个默认地点的主页
+             */
+            return true;
+        }
         return super.onOptionsItemSelected(item);
     }
 
