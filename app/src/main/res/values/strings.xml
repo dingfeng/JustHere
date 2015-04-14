@@ -21,4 +21,7 @@
     <string name="title_activity_splash">SplashActivity</string>
     <string name="loginButton">登陆</string>
     <string name="title_activity_choose_location">请选择地点</string>
+    <string name="openDrawer">openDrawer</string>
+    <string name="closeDrawer">closeDrawer</string>
+    openDrawer
 </resources>

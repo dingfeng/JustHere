@@ -1,33 +1,47 @@
 package com.justsdudio.justhere.chooseLocation;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Spannable;
-import android.text.SpannableString;
-import android.text.style.AbsoluteSizeSpan;
-import android.text.style.RelativeSizeSpan;
-import android.text.style.TypefaceSpan;
-import android.view.LayoutInflater;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.os.Build;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
-
-import com.justsdudio.justhere.R;
-
+import android.support.v7.widget.LinearLayoutManager;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.justsdudio.justhere.MainActivity;
+import com.justsdudio.justhere.R;
+
 
 public class ChooseLocationActivity extends ActionBarActivity {
+    //Similarly we Create a String Resource for the name and email in the header view
+    //And we also create a int resource for profile picture in the header view
+    String TITLES[] = {"我的地点","设置","我的账户"};
+    int ICONS[] = {R.drawable.ic_locationcollect,R.drawable.ic_setting,R.drawable.ic_user};
+    String NAME = " 吴康康";
+    String EMAIL = "padeoe@gmai.com";
+    int PROFILE = R.drawable.personalpicture;
 
+    private Toolbar toolbar;                              // Declaring the Toolbar Object
+
+    RecyclerView mRecyclerView;                           // Declaring RecyclerView
+    RecyclerView.Adapter mAdapter;                        // Declaring Adapter For Recycler View
+    RecyclerView.LayoutManager mLayoutManager;            // Declaring Layout Manager as a linear layout manager
+    DrawerLayout Drawer;                                  // Declaring DrawerLayout
+
+    ActionBarDrawerToggle mDrawerToggle;                  // Declaring Action Bar Drawer Toggle
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,19 +51,46 @@ public class ChooseLocationActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
-/*
-        SpannableString s = new SpannableString("请选择地点（测试字体）");
-        s.setSpan(new RelativeSizeSpan(1.0f),0, s.length(),
-                Spannable.SPAN_INCLUSIVE_INCLUSIVE);
-
-        // Update the action bar title with the TypefaceSpan instance
-        toolbar.setTitle(s);*/
-        MenuItem menu2=(MenuItem)findViewById(R.id.action_settings);
-        if(menu2==null){
-            System.out.println("menuitem对象在创建Activity时是空的");
-        }
+        //获取toolbar对象，设置为ActionBar
+        toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
         this.setSupportActionBar(toolbar);
+
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.RecyclerView); // Assigning the RecyclerView Object to the xml View
+        mRecyclerView.setHasFixedSize(true);                            // Letting the system know that the list objects are of fixed size
+        mAdapter = new MyAdapter(TITLES,ICONS,NAME,EMAIL,PROFILE);       // Creating the Adapter of MyAdapter class(which we are going to see in a bit)
+        // And passing the titles,icons,header view name, header view email,
+        // and header view profile picture
+
+        mRecyclerView.setAdapter(mAdapter);                              // Setting the adapter to RecyclerView
+
+        mLayoutManager = new LinearLayoutManager(this);                 // Creating a layout Manager
+
+        mRecyclerView.setLayoutManager(mLayoutManager);                 // Setting the layout Manager
+
+
+        Drawer = (DrawerLayout) findViewById(R.id.DrawerLayout);        // Drawer object Assigned to the view
+        mDrawerToggle = new ActionBarDrawerToggle(this,Drawer,toolbar,R.string.openDrawer,R.string.closeDrawer){
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                // code here will execute once the drawer is opened( As I dont want anything happened whe drawer is
+                // open I am not going to put anything here)
+            }
+
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                // Code here will execute once drawer is closed
+            }
+
+
+
+        }; // Drawer Toggle Object Made
+        Drawer.setDrawerListener(mDrawerToggle); // Drawer Listener set to the Drawer toggle
+        mDrawerToggle.syncState();               // Finally we set the drawer toggle sync State
+
 
     }
 
@@ -58,17 +99,28 @@ public class ChooseLocationActivity extends ActionBarActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_choose_location, menu);
         //获取menuItem对象进行修改，不过貌似无法调整ActionBar上展示出来的Item字体的大小，因此注释掉了
-/*        MenuItem menu2=(MenuItem)findViewById(R.id.action_settings);
-        if(menu==null){
+        MenuItem menu2=(MenuItem)findViewById(R.id.action_settings);
+/*        if(menu==null){
             System.out.println("menu对象是空的");
         }
         if(menu.findItem(R.id.action_settings)==null){
-            System.out.println("menu对象包含menuitem");
+            System.out.println("menu对象不包含menuitem");
         }
-        SpannableString s = new SpannableString("跳过2");
+       *//* SpannableString s = new SpannableString("跳过2");
         s.setSpan(new AbsoluteSizeSpan(50),0, s.length(),
                 Spannable.SPAN_INCLUSIVE_INCLUSIVE);
         menu.findItem(R.id.skip).setTitle(s);*/
+        MenuItem menuItem=menu.findItem(R.id.skip);
+        menuItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener(){
+
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+              /*  Intent intent = new Intent(ChooseLocationActivity.this, MainActivity.class);
+                startActivity(intent);
+                ChooseLocationActivity.this.finish();*/
+                return false;
+            }
+        });
 
 
 
@@ -92,6 +144,9 @@ public class ChooseLocationActivity extends ActionBarActivity {
             /**
              * 这里填写点击跳过按钮后的事件，应该是跳转到一个默认地点的主页
              */
+            Intent intent = new Intent(ChooseLocationActivity.this, MainActivity.class);
+            startActivity(intent);
+            ChooseLocationActivity.this.finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -153,7 +208,6 @@ public class ChooseLocationActivity extends ActionBarActivity {
             // Get a reference to the ListView, and attach this adapter to it.
             ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
             listView.setAdapter(mForecastAdapter);
-
             return rootView;
         }
     }
